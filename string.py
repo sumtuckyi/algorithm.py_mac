@@ -29,6 +29,7 @@ print(string_reversal('hello~!'))
 
 def atoi(s):
     for i in range(len(s)):
+        pass
 
 
 

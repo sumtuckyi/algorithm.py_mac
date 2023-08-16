@@ -7,7 +7,7 @@ def back_tracking(level, total, x):
         if min_v > total:
             min_v = total
         return
-    total += arr[level][]
+    # total += arr[level][]
             # if visited_y[j] == 1:
             #     continue
             # visited_y[j] = 1

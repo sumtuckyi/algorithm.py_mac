@@ -35,18 +35,15 @@
 # print(q)
 
 def sliding(deg):
-    n = deg//90
+    n = (deg//90) % qsize  # n칸씩 오른쪽으로 민다.(=한 칸씩 오른쪽으로 n번 민다.)
     temp = q[1]
     q[1] = q[0]
-    for i in range(2*n):
+    for i in range(1, qsize*n+1):  # 2n번 반복
         q[(i+1)%qsize], temp = temp, q[(i+1)%qsize]
-
-
-
 
 q = [3, 6, 9, 12]
 qsize = 4
-sliding(180)
+sliding(180)  # 두 칸 이동
 print(q)
-# sliding(450)
-# print(q)
+sliding(450)  # 한 칸 이동
+print(q)

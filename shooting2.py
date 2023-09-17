@@ -11,7 +11,7 @@ def right(idx, N):  # 해당 인덱스를 기준으로 오른쪽 탐색
 def left(idx, N):
     bn = idx-1
     while bn >= 1:
-        if popped[bn] ==0:
+        if popped[bn] == 0:
             return scores[bn]
         else:
             bn -= 1

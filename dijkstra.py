@@ -9,6 +9,7 @@ for _ in range(e):
     f, t, c = map(int, input().split())
     graph[f].append((t, c))
 
+
 def dijkstra():
     distance[0] = 0
     heapq.heappush(pq, (0, 0))
@@ -33,3 +34,60 @@ if distance[n-1] == float('inf'):
 else:
     print(distance[n-1])
 
+#
+import heapq
+
+N, T = map(int, input().split())
+graph = [[] for _ in range(N)]
+adj_m = [[0 for _ in range(N)] for _ in range(N)]
+for _ in range(T):
+    f, t, w = map(int, input().split())
+    graph[f].append([t, w])
+    adj_m[f][t] = 1
+distance = [float('inf') for _ in range(N)]
+visited = [0]*N
+tof = True
+
+
+def dijkstra(start):
+    pq = []
+    heapq.heappush(pq, (0, start))
+    distance[start] = 0
+
+    while pq:
+        d, now = heapq.heappop(pq)
+
+        if distance[now] < d:
+            continue
+
+        for item in graph[now]:  # item의 형식은 [node_n, w]
+            can_node = item[0]
+            cost = item[1]
+
+            n_cost = d + cost
+            if n_cost >= distance[can_node]:
+                continue
+            distance[can_node] = n_cost
+            heapq.heappush(pq, (n_cost, can_node))
+
+
+# 만약 연결 되어있지 않다면 impossible 출력
+def dfs(v):
+    visited[v] = 1
+    for i in range(N):
+        if not adj_m[v][i]:
+            continue
+        if visited[i]:
+            continue
+        dfs(i)
+
+
+dijkstra(0)
+dfs(0)
+if not visited[N-1]:
+    tof = False
+
+if not tof:
+    print('impossible')
+else:
+    print(distance[N-1])

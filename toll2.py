@@ -1,4 +1,5 @@
 # 도시번호는 1부터 시작
+# 다익스트라 함수 처음부터 다시 구현하기 - 여러 알고리즘으로 해보기
 import heapq
 N, M, K = map(int, input().split())
 A, B = map(int, input().split())

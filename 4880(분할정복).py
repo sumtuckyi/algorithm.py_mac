@@ -12,6 +12,7 @@ def find_winner(start, end):  # 승자판별함수
 
     return tournament(left, right)
 
+
 def tournament(a, b):  # 번호를 인자로 받음
     # 시간 복잡도를 줄이기 위해 맵 사용
     condition = {
@@ -27,6 +28,7 @@ def tournament(a, b):  # 번호를 인자로 받음
         return min(a, b)  # 카드에 적힌 숫자가 같으면 번호가 작은 학생이 승자
     else:
         return condition.get((cards[a], cards[b]))
+
 
 T = int(input())
 for tc in range(1, T + 1):

@@ -51,7 +51,7 @@ for i in range(N):
             v.append((i, j))  # 좌표를 저장하고
             lab[i][j] = 0  # 해당 위치는 0으로 바꿈
 
-# 바이러스 위치 중 가능한 M개를 뽑는 조합
+# 바이러스 위치 중 가능한 M개를 뽑는 조합 - 백트래킹은 시간초과;
 for comb in itertools.combinations(range(len(v)), M):
     lab2 = deepcopy(lab)
     for idx in comb:

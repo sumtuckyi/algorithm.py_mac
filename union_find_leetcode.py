@@ -147,3 +147,57 @@ class Solution:
             return -1
 
         return removed_edges
+
+# 조금 더 효율적인 풀이
+class UnionFind2:
+    def __init__(self, n):
+        self.parent = list(range(n))  # 각 노드의 부모를 자기 자신으로 초기화
+        self.size = [1] * n  # 각 집합의 크기를 1로 초기화
+        self.components = n  # 초기 컴포넌트의 수는 전체 노드의 수와 같음
+
+    def find(self, x):  # 부모 노드를 반환
+        if self.parent[x] != x:  # x의 루트 노드가 자기 자신이 아니라면
+            self.parent[x] = self.find(self.parent[x])  # 경로 압축
+        return self.parent[x]  # 루트 반환
+
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px == py:  # 루트 노드가 같다면 이미 같은 집합(연결됨)임
+            return False  # 합치지 않음
+        if self.size[px] < self.size[py]:  # py가 더 크면
+            px, py = py, px  # swap 하여 항상 px가 더 크게 한다.
+        self.parent[py] = px  # py를 px의 하위 트리로 연결
+        self.size[px] += self.size[py]  # px의 크기 업데이트
+        self.components -= 1  # 컴포넌트 수 감소
+        return True
+
+class Solution2:
+    def maxNumEdgesToRemove(self, n, edges):
+        alice = UnionFind2(n)
+        bob = UnionFind2(n)
+        edges_used = 0  # 사용된 간선 수
+
+        # Type 3 edges (Both Alice and Bob)
+        # (핵심)두 사람 모두 사용할 수 있는 간선인 파란 간선을 가장 먼저 사용한다..!
+        for t, u, v in edges:
+            if t == 3:  # 파란 간선이면
+                if alice.union(u-1, v-1):  # 앨리스 그래프에 추가
+                    bob.union(u-1, v-1)  # 밥의 그래프에도 추가
+                    edges_used += 1  # 사용된 간선의 수 증가
+
+        # Type 1 edges (Only Alice)
+        for t, u, v in edges:
+            if t == 1:  # 빨간 간선이면
+                if alice.union(u-1, v-1):  # 앨리스의 그래프에만 추가
+                    edges_used += 1  # 사이클 생성 간선이 아닌 경우에만 사용된 간선이 추가됨
+
+        # Type 2 edges (Only Bob)
+        for t, u, v in edges:
+            if t == 2:
+                if bob.union(u-1, v-1):
+                    edges_used += 1
+
+        # Check if both graphs are fully connected
+        if alice.components == 1 and bob.components == 1:
+            return len(edges) - edges_used
+        return -1

@@ -1,4 +1,4 @@
-# 가장 가까운 palindrome 찾기
+# 가장 가까운 palindrome 찾기 - 564문
 class Solution:
     def nearestPalindromic(self, n: str) -> str:
         N = len(n)

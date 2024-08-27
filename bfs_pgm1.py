@@ -28,7 +28,7 @@ def solution(maze):
     while queue:
         r_pos, b_pos, r_visited, b_visited, turns, r_done, b_done = queue.popleft()
 
-        # 두 수레 모두 도착했는지 확인
+        # 두 수레 모두 도착했는지 확인 - answer 갱신 조건
         if r_done and b_done:
             if answer == 0:
                 answer = turns
@@ -37,7 +37,7 @@ def solution(maze):
             continue
 
             # 모든 가능한 이동 조합 확인
-        # 두 수레 중 도착한 수레에 대해서는 이동하지 않기에 (0, 0) 반환
+        # 두 수레 중 도착한 수레는 이번 턴에 이동하지 않기에 (0, 0) 반환
         for r_dir in directions if not r_done else [(0, 0)]:
             for b_dir in directions if not b_done else [(0, 0)]:
                 # 빨간 수레가 도착점에 도착한 상태라면 도착점을 유지 - 그렇지 않다면 새로운 위치로 이동

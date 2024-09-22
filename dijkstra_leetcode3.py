@@ -45,7 +45,7 @@ class Solution:
         return []
 
     def _dijkstra(self, graph, source, dest):
-        pq = [(0, source)]  # 나중에 heappop으로 최소힙으로 변환할 것
+        pq = [(0, source)]  # 나중에 heappop으로 인해 최소힙으로 변환된다.
         dist = [float('inf')] * (len(graph))
         dist[source] = 0
 

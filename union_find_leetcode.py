@@ -122,7 +122,7 @@ class UnionFind:
         return True
 
 
-class Solution:
+class Solution2:
     def maxNumEdgesToRemove(self, n, edges):
         alice = UnionFind(n)
         bob = UnionFind(n)

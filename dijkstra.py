@@ -1,7 +1,7 @@
 import heapq
 n, e = map(int, input().split())
 graph = [[] for _ in range(n)]
-distance = [float('inf') for _ in range(n)]
+distance = [float('inf') for _ in range(n)] # i번째 노드까지의 최단거리
 visited = [False]*n
 pq = []
 
@@ -15,16 +15,18 @@ def dijkstra():
     heapq.heappush(pq, (0, 0))
     while pq:
         cur_cost, cur_node = heapq.heappop(pq)
-        # 이미 방문한 노드라면 패스???
+        # 이미 방문한 노드라면 패스
         if visited[cur_node]:
             continue
+        # 그렇지 않다면 방문처리하고
         visited[cur_node] = True
 
+        # 인접 노드와 간선을 탐색
         for next_node, edge_cost in graph[cur_node]:
-            total_cost = cur_cost + edge_cost
-            if distance[next_node] > total_cost:
-                distance[next_node] = total_cost
-                heapq.heappush(pq, (total_cost, next_node))
+            total_cost = cur_cost + edge_cost # 새로운 비용
+            if distance[next_node] > total_cost: # 새로운 비용이 더 효율적인 방법이면
+                distance[next_node] = total_cost # 그 값을 갱신
+                heapq.heappush(pq, (total_cost, next_node)) # 우선순위큐에 삽입
 
 
 dijkstra()

@@ -23,17 +23,17 @@ first_table = defaultdict(int)
 for token in first: # 기준 문자 테이블 채우기
     first_table[token] += 1
 
-for i in range(1, N):  # 나머지 단어와 비교
-    temp_table = defaultdict(int) # 비교할 단어의 테이블
-    for char in words[i]: # 채우기
-        temp_table[char] += 1
-
-    cnt = 0
-    for key in first_table:
-        # 먼저 같은 구성인지 확인
-        if temp_table[key] == first_table[key]:
-            cnt += 1
-    if cnt == F:  # 같은 구성
-        answer += 1
-    elif cnt == F-1:
+# for i in range(1, N):  # 나머지 단어와 비교
+#     temp_table = defaultdict(int) # 비교할 단어의 테이블
+#     for char in words[i]: # 채우기
+#         temp_table[char] += 1
+#
+#     cnt = 0
+#     for key in first_table:
+#         # 먼저 같은 구성인지 확인
+#         if temp_table[key] == first_table[key]:
+#             cnt += 1
+#     if cnt == F:  # 같은 구성
+#         answer += 1
+#     elif cnt == F-1:
 

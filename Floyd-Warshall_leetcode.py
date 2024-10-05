@@ -20,9 +20,9 @@ class Solution(object):
             graph[s][e] = graph[e][s] = d  # 양방향으로 탐색 가능
 
         # 플로이드-워셜 알고리즘
-        for k in range(n):
-            for i in range(n):
-                for j in range(n):
+        for k in range(n): # 경유 노드
+            for i in range(n): # 출발 노드
+                for j in range(n): # 도착 노드
                     graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
 
         min_reachable = n

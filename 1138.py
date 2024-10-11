@@ -1,5 +1,5 @@
 # 그리디라기 보다는 구현 같음
-N = int(input()) # 1부터 10까지
+N = int(input())  # 1부터 10까지
 
 p = [0] + list(map(int, input().split()))
 
